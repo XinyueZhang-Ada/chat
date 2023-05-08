@@ -1,25 +1,14 @@
-dist: xenial
-
-language: python
-
-cache: pip
-
-python:
-    - "3.6"
-    - "3.7"
-    - "3.8"
-    - "nightly"
-
-matrix:
-    allow_failures:
-        - python: "nightly"
-
-install:
-    - pip install pipenv --upgrade-strategy=only-if-needed
-    - pipenv install --dev
-
-script:
-    - bash scripts/test.sh
-
-after_script:
-    - bash <(curl -s https://codecov.io/bash)
+language: python                                                                                                                                                                                                                    
+python:                                                                                                                                                                                                                            
+  -"3.8"                                                                                                                                                                                                                          
+install:                                                                                                                                                                                                                            
+  - pip install numpy                                                                                                                                                                                                              
+  - pip install colorama
+  - pip install matplotlib
+  - pip install nose                                                                                                                                                                                                                
+script: nosetests                                                                                                                                                                                                                  
+virtualenv:                                                                                                                                                                                                                        
+  system_site_packages: true                                                                                                                                                                                                        
+before_install:                                                                                                                                                                                                                    
+  - sudo apt-get update -qq                                                                                                                                                                                                        
+  - sudo apt-get install -qq python3-numpy python3-scipy
