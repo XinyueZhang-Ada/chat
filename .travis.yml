@@ -1,7 +1,13 @@
-language: python
-python:
-  - "3.8"
+language: java
+jdk:
+  - openjdk8
+cache:
+  directories:
+    - $HOME/.m2
 install:
-  - pip install -r requirements.txt
+  -  mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - python hello.py
+  - mvn test -B
+
+notifications:
+  email: false
